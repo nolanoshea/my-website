@@ -1,1 +1,3 @@
-console.log('moo')
+exports.handler = async function(event, context) {
+    console.log('moo')
+}
