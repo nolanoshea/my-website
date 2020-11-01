@@ -1,3 +1,2 @@
 / https://nolanoshea.com/.netlify/functions/injectDarkModeAPI 200
-#/cdn-cgi/* https://registry.jsonresume.org/cdn-cgi/:splat
-/* https://nolanoshea.com/site 200
+/* https://nolanoshea.com 200
