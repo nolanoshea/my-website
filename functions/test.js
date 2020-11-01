@@ -10,8 +10,8 @@ exports.handler = async (event) => {
             dataString += chunk
           });
           res.on('end', () => {
-              let obj = JSON.parse(dataString)
-              console.log(obj)
+//               let obj = JSON.parse(dataString)
+              console.log(dataString)
 //             resolve({
 //                 statusCode: 200,
 //                 body: JSON.stringify(JSON.parse(dataString), null, 4)
