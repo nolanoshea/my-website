@@ -1,5 +1,6 @@
 const https = require('https')
 const url = 'https://registry.jsonresume.org/nolanoshea'
+const injectedSnippet = '<script async src="https://cdn.jsdelivr.net/npm/darkreader/darkreader.min.js" onload="DarkReader.auto()"/>'
 
 exports.handler = async (event) => {
     let dataString = ''
@@ -10,7 +11,7 @@ exports.handler = async (event) => {
             .on('end', () => {
                 resolve({
                     statusCode: 200,
-                    body: dataString
+                    body: dataString.replace(/(.*)(<\/body>.*)/, '$1' + injectedSnippet + '$2')
                 })
             })
         })
