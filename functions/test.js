@@ -1,35 +1,31 @@
-exports.handler = async function(event, context) {
-    console.log('inside test serverless function')
-    const https = require('https')
-    const options = {
-      hostname: 'registry.jsonresume.org',
-      port: 443,
-      path: '/nolanoshea',
-      method: 'GET'
-    }
+const https = require('https')
+const url = 'https://registry.jsonresume.org/nolanoshea'
+
+exports.handler = async (event) => {
+    let dataString = ''
     
-    let output = ''
-
-    console.log('about to make request')
-    const req = https.request(options, res => {
-        console.log('inside of request callback')
-        res.on('data', chunk => {
-            console.log('inside on data')
-            output += chunk
-        }).on('end', () => {
-                console.log('inside on end')
-                let obj = JSON.parse(output)
-
-                console.log(obj)
-//                 onResult(res.statusCode, obj)
-            })
+    const response = await new Promise((resolve, reject) => {
+        const req = https.get(url, res => {
+          res.on('data', chunk => {
+            dataString += chunk
+          });
+          res.on('end', () => {
+              let obj = JSON.parse(dataString)
+              console.log(obj)
+//             resolve({
+//                 statusCode: 200,
+//                 body: JSON.stringify(JSON.parse(dataString), null, 4)
+//             })
+          })
+        })
+        
+        req.on('error', (e) => {
+          reject({
+              statusCode: 500,
+              body: 'Something went wrong!'
+          })
+        })
     })
-    console.log('outside of request')
-    req.on('error', error => {
-        console.log('inside of error lambda')
-        console.error(error.message)
-        console.log('end of error lambda')
-    })
-    req.end()
-    console.log('end of test serverless function')
+    
+    return response
 }
