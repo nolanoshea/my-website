@@ -12,6 +12,7 @@ exports.handler = async function(event, context) {
 
     console.log('about to make request')
     const req = https.request(options, res => {
+        console.log('inside of request callback')
         res.on('data', chunk => {
             console.log('inside on data')
             output += chunk
