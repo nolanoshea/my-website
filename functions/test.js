@@ -1,6 +1,6 @@
 const https = require('https')
 const url = 'https://registry.jsonresume.org/nolanoshea'
-const injectedSnippet = '<script async src="https://cdn.jsdelivr.net/npm/darkreader/darkreader.min.js" onload="DarkReader.auto()"/>'
+const injectedSnippet = '<script async src="https://cdn.jsdelivr.net/npm/darkreader/darkreader.min.js" onload="DarkReader.auto()"></script>'
 
 exports.handler = async (event) => {
     let dataString = ''
