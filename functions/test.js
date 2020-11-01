@@ -15,7 +15,7 @@ exports.handler = async function(event, context) {
                 let obj = JSON.parse(output)
 
                 console.log(obj)
-                onResult(res.statusCode, obj)
+//                 onResult(res.statusCode, obj)
             })
     })
 
