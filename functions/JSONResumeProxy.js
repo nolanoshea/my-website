@@ -18,7 +18,7 @@ exports.handler = async (event) => {
                 resolve({
                     statusCode: 200,
                     // apply custom transformations to the response
-                    body: dataString.replace(/<\/body>/, '$`' + darkModeAPISnippet + '$&$\'') // inject dark mode snippet
+                    body: dataString.replace(/(.*)(<\/body>.*)/, '$1' + darkModeAPISnippet + '$2') // inject dark mode snippet
                         .replace(new RegExp(linkDetailEl), '') // remove redundant link detail
                 })
             })
