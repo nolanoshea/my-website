@@ -2,7 +2,7 @@ const https = require('https')
 const url = 'https://registry.jsonresume.org/nolanoshea'
 
 const darkModeAPISnippet = '<script async src="https://cdn.jsdelivr.net/npm/darkreader/darkreader.min.js" onload="' +
-      'DarkReader.setFetchMethod(fetch: (url) => Promise<Response>);' +
+      'DarkReader.setFetchMethod(window.fetch);' +
       'DarkReader.auto();' +
       '"></script>'
 
