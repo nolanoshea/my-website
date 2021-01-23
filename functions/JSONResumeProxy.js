@@ -1,12 +1,16 @@
 const https = require('https')
 const url = 'https://registry.jsonresume.org/nolanoshea'
 
-const darkModeAPISnippet = '<script async src="https://cdn.jsdelivr.net/npm/darkreader/darkreader.min.js" onload="' +
+const darkModeAPI = '<script async src="https://cdn.jsdelivr.net/npm/darkreader/darkreader.min.js" onload="' +
       'DarkReader.setFetchMethod(window.fetch);' +
       'DarkReader.auto();' +
       '"></script>'
 
-const linkDetailPattern = '<div class="detail">.*?icon-link.*?<\/div>'
+const removeLinkDetail = '<script>' +
+      'document.getElementsByClassName("icon-link")[0].parentNode.parentNode.remove()' +
+      '</script>'
+
+const snippets = darkModeAPI + removeLinkDetail
 
 exports.handler = async (event) => {
     let dataString = ''
@@ -17,9 +21,7 @@ exports.handler = async (event) => {
             .on('end', () => {
                 resolve({
                     statusCode: 200,
-                    // apply custom transformations to the response
-                    body: dataString.replace(/(.*)(<\/body>.*)/, '$1' + darkModeAPISnippet + '$2') // inject dark mode snippet
-                        .replace(new RegExp(linkDetailPattern), '') // remove redundant link detail
+                    body: dataString.replace(/(.*)(<\/body>.*)/, '$1' + snippets + '$2') // inject snippets
                 })
             })
         })
