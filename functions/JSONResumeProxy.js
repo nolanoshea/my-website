@@ -6,7 +6,7 @@ const darkModeAPISnippet = '<script async src="https://cdn.jsdelivr.net/npm/dark
       'DarkReader.auto();' +
       '"></script>'
 
-const linkDetailEl = '<div class="detail"><span class="icon"><i class="icon fs-lg icon-link"></i></span><span class="info"><a href="https://nolanoshea.com" target="_blank">https://nolanoshea.com</a></span></div>'
+const linkDetailPattern = '<div class="detail">.*icon-link.*<\/div>'
 
 exports.handler = async (event) => {
     let dataString = ''
@@ -19,7 +19,7 @@ exports.handler = async (event) => {
                     statusCode: 200,
                     // apply custom transformations to the response
                     body: dataString.replace(/(.*)(<\/body>.*)/, '$1' + darkModeAPISnippet + '$2') // inject dark mode snippet
-                        .replace(new RegExp(linkDetailEl), '') // remove redundant link detail
+                        .replace(new RegExp(linkDetailPattern), '') // remove redundant link detail
                 })
             })
         })
