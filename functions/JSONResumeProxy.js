@@ -6,7 +6,7 @@ const darkModeAPISnippet = '<script async src="https://cdn.jsdelivr.net/npm/dark
       'DarkReader.auto();' +
       '"></script>'
 
-const linkDetailPattern = '<div class="detail">.*icon-link.*<\/div>'
+const linkDetailPattern = '<div class="detail">.*?icon-link.*?<\/div>'
 
 exports.handler = async (event) => {
     let dataString = ''
