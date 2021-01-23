@@ -19,7 +19,7 @@ exports.handler = async (event) => {
                     statusCode: 200,
                     // apply custom transformations to the response
                     body: dataString.replace(/<\/body>/, '$`' + darkModeAPISnippet + '$&$\'') // inject dark mode snippet
-                        .replace(new RegExp(linkDetailEl), '$`$\'') // remove redundant link detail
+                        .replace(new RegExp(linkDetailEl), '') // remove redundant link detail
                 })
             })
         })
