@@ -17,7 +17,7 @@ const addSabre = '<script>' +
 const removeProjects = '<script>' +
       'document.getElementById("projects-experience").remove();' +
       // update floating nav
-      'document.querySelectorAll("a[href=\"#projects-experience\"]")[0].parentNode.remove();' +
+      'document.querySelectorAll("a[href=\\"#projects-experience\\"]")[0].parentNode.remove();' +
       '</script>'
 
 const snippets = removeProjects + darkModeAPI + addSabre + removeLinkDetail
