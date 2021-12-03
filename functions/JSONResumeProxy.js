@@ -20,7 +20,14 @@ const removeProjects = '<script>' +
       'document.querySelectorAll("a[href=\\"#projects-experience\\"]")[0].parentNode.remove();' +
       '</script>'
 
-const snippets = removeProjects + darkModeAPI + addSabre + removeLinkDetail
+const fixBadge = '<script>' +
+      'let badgeNode = document.querySelector(\'[itemprop="certificate"]\').childNodes[0];' +
+      'badgeNode.innerHTML = badgeNode.innerHTML.replace(/&lt;/, "<").replace(/&gt;/, ">")' +
+      // remove comma
+      '.replace(/,/, "")' +
+      '</script>'
+
+const snippets = removeProjects + darkModeAPI + fixBadge + addSabre + removeLinkDetail
 
 exports.handler = async (event) => {
     let dataString = ''
