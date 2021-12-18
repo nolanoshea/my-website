@@ -1,9 +1,9 @@
 const https = require('https')
 const url = 'https://registry.jsonresume.org/nolanoshea'
 
-const darkModeAPI = '<script async src="https://cdn.jsdelivr.net/npm/darkreader/darkreader.min.js" onload="' +
+const darkModeAPI = '<script async src="https://cdn.jsdelivr.net/npm/darkreader@4.9.42/darkreader.min.js" onload="' +
       'DarkReader.setFetchMethod(window.fetch);' +
-      'DarkReader.auto({});' +
+      'DarkReader.auto();' +
       '"></script>'
 
 const removeLinkDetail = '<script>' +
